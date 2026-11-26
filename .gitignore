@@ -3,3 +3,10 @@
 *.bak
 fp-info-cache
 *-backups/
+
+# PlatformIO
+.pio/
+.vscode/
+
+# Private credentials
+secrets.h

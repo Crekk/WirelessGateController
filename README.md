@@ -256,4 +256,9 @@ Revision 1.0 is a manufactured prototype, not a fully validated product. The rel
 
 ## License and acknowledgements
 
-Project licensing and third-party asset attribution are pending review. The repository includes third-party CAD assets, including an ESP32 library associated with SnapEDA, standard KiCad models, and decorative Madoka Magica artwork. No blanket license is currently asserted over those assets.
+The original firmware, hardware design and documentation are licensed under
+the [MIT License](LICENSE).
+
+Third-party component libraries, 3D models and Madoka Magica artwork are
+excluded from this license and remain subject to their respective copyright
+and licensing terms.

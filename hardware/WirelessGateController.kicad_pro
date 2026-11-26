@@ -533,7 +533,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "relay.kicad_pro",
+    "filename": "WirelessGateController.kicad_pro",
     "version": 3
   },
   "net_settings": {
@@ -694,8 +694,8 @@
     "subpart_id_separator": 0,
     "top_level_sheets": [
       {
-        "filename": "relay.kicad_sch",
-        "name": "relay",
+        "filename": "WirelessGateController.kicad_sch",
+        "name": "WirelessGateController",
         "uuid": "00000000-0000-0000-0000-000000000000"
       }
     ]

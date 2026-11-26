@@ -10,3 +10,6 @@ fp-info-cache
 
 # Private credentials
 secrets.h
+
+# KiCad local history
+.history/

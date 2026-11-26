@@ -454,16 +454,17 @@ void maintainWifi() {
 // =====================================================
 // Home Assistant auto-discovery
 // =====================================================
+
 void publishDiscovery() {
   String configUrl = "http://" + local_IP.toString() + "/";
 
   String device =
     "\"dev\":{"
-      "\"ids\":\"esp32-gate\","
-      "\"name\":\"Gate Controller\","
+      "\"ids\":[\"esp32-garage\"],"
+      "\"name\":\"Garage Controller\","
       "\"mf\":\"DIY\","
-      "\"mdl\":\"ESP32 Gate\","
-      "\"sw\":\"1.0.0\","
+      "\"mdl\":\"Wireless Gate Controller v1.0\","
+      "\"sw\":\"1.0.2\","
       "\"cu\":\"" + configUrl + "\""
     "}";
 
@@ -472,38 +473,38 @@ void publishDiscovery() {
     "\"pl_avail\":\"online\","
     "\"pl_not_avail\":\"offline\",";
 
-  String relay1 =
-    "{"
-      "\"name\":\"Oba Skrzydła\","
-      "\"uniq_id\":\"gate_relay1\","
-      "\"cmd_t\":\"gate/relay1\","
-      "\"pl_prs\":\"PRESS\","
-      + availability +
+  const char* names[] = {"Up", "Stop", "Down"};
+  const char* topics[] = {
+    TOPIC_RELAY1,
+    TOPIC_RELAY2,
+    TOPIC_RELAY3
+  };
+
+  for (int i = 0; i < 3; i++) {
+    String id = "garage_relay" + String(i + 1);
+
+    String payload =
+      String("{") +
+      "\"name\":\"" + names[i] + "\"," +
+      "\"uniq_id\":\"" + id + "\"," +
+      "\"cmd_t\":\"" + topics[i] + "\"," +
+      "\"pl_prs\":\"PRESS\"," +
+      "\"retain\":false," +
+      availability +
       device +
-    "}";
+      "}";
 
-  mqttClient.publish(
-    "homeassistant/button/gate_relay1/config",
-    relay1.c_str(),
-    true
-  );
+    String discoveryTopic =
+      "homeassistant/button/" + id + "/config";
 
-  String relay2 =
-    "{"
-      "\"name\":\"Jedno Skrzydło\","
-      "\"uniq_id\":\"gate_relay2\","
-      "\"cmd_t\":\"gate/relay2\","
-      "\"pl_prs\":\"PRESS\","
-      + availability +
-      device +
-    "}";
-
-  mqttClient.publish(
-    "homeassistant/button/gate_relay2/config",
-    relay2.c_str(),
-    true
-  );
+    mqttClient.publish(
+      discoveryTopic.c_str(),
+      payload.c_str(),
+      true
+    );
+  }
 }
+
 // =====================================================
 // MQTT
 // =====================================================

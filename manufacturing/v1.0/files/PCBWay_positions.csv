@@ -1,0 +1,37 @@
+﻿pos_x,pos_y,rotation,side,designator,mpn,pack,footprint,value,mount_type
+117.4,-69.45,90.0,top,C1,,,C_Disc_D3.8mm_W2.6mm_P2.50mm,0.1µF Decoupling,tht
+153.5,-70.75,-90.0,top,C2,,,C_Disc_D3.8mm_W2.6mm_P2.50mm,0.1µF Decoupling,tht
+170.0,-67.5,-90.0,top,C3,,,C_Disc_D3.8mm_W2.6mm_P2.50mm,0.1µF Decoupling,tht
+170.0,-87.0,-90.0,top,C4,,,C_Disc_D3.8mm_W2.6mm_P2.50mm,0.1µF Decoupling,tht
+170.0,-105.5,-90.0,top,C5,,,C_Disc_D3.8mm_W2.6mm_P2.50mm,0.1µF Decoupling,tht
+169.5,-79.0,0.0,top,C6,,,C_Radial_D8.0mm_H11.5mm_P3.50mm,470µF,tht
+119.0,-96.46,-90.0,top,D10,,,LED_D1.8mm_W3.3mm_H2.4mm,LED,tht
+162.47,-64.0,180.0,top,D2,,,LED_D1.8mm_W3.3mm_H2.4mm,LED,tht
+174.1,-64.59,-90.0,top,D3,,,D_A-405_P7.62mm_Horizontal,1N5819 1A / 40V,tht
+162.27,-84.0,180.0,top,D5,,,LED_D1.8mm_W3.3mm_H2.4mm,LED,tht
+174.0,-84.39,-90.0,top,D6,,,D_A-405_P7.62mm_Horizontal,1N5819 1A / 40V,tht
+162.27,-102.0,180.0,top,D8,,,LED_D1.8mm_W3.3mm_H2.4mm,LED,tht
+173.8,-102.59,-90.0,top,D9,,,D_A-405_P7.62mm_Horizontal,1N5819 1A / 40V,tht
+200.9675,-77.0,90.0,top,J1,,,TerminalBlock_MaiXu_MX126-5.0-02P_1x02_P5.00mm,Relay 1,tht
+201.0,-88.895,90.0,top,J2,,,TerminalBlock_MaiXu_MX126-5.0-02P_1x02_P5.00mm,Relay 2,tht
+201.0,-101.0,90.0,top,J3,,,TerminalBlock_MaiXu_MX126-5.0-02P_1x02_P5.00mm,Relay 3,tht
+170.0,-123.0,0.0,top,J4,,,TerminalBlock_MaiXu_MX126-5.0-02P_1x02_P5.00mm,Photocell Relay,tht
+150.8,-62.0325,180.0,top,J5,,,TerminalBlock_MaiXu_MX126-5.0-02P_1x02_P5.00mm,5V Power In,tht
+183.0,-123.0,0.0,top,J6,,,TerminalBlock_MaiXu_MX126-5.0-02P_1x02_P5.00mm,Antenna Data,tht
+157.0,-123.0,0.0,top,J7,,,TerminalBlock_MaiXu_MX126-5.0-02P_1x02_P5.00mm,Antenna 5V Power,tht
+126.7,-71.0,-90.0,top,J8,,,BarrelJack_Horizontal,Barrel_Jack_Switch,tht
+180.1625,-62.355,0.0,top,K1,,,Relay_SPDT_Hongfa_JQC-3FF_0XX-1Z,JQC-3FF-005-1Z,tht
+179.9625,-81.0,0.0,top,K2,,,Relay_SPDT_Hongfa_JQC-3FF_0XX-1Z,JQC-3FF-005-1Z,tht
+179.9625,-100.355,0.0,top,K3,,,Relay_SPDT_Hongfa_JQC-3FF_0XX-1Z,JQC-3FF-005-1Z,tht
+161.14,-67.63,-90.0,top,Q1,,,TO-92_Inline,BC337,tht
+161.0,-87.73,-90.0,top,Q2,,,TO-92_Inline,BC337,tht
+161.0,-105.73,-90.0,top,Q3,,,TO-92_Inline,BC337,tht
+119.0,-110.81,90.0,top,R10,,,R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal,1k,tht
+157.58,-59.6,0.0,top,R2,,,R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal,1k,tht
+165.2,-73.8,180.0,top,R3,,,R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal,1k,tht
+157.38,-80.0,0.0,top,R5,,,R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal,1k,tht
+165.0,-94.0,180.0,top,R6,,,R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal,1k,tht
+157.3525,-98.0,0.0,top,R8,,,R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal,1k,tht
+164.9725,-112.355,180.0,top,R9,,,R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal,1k,tht
+137.1625,-103.295,0.0,top,U1,,None,MODULE_ESP32_DEVKIT_V1,ESP32-DEVKIT-V1,tht
+119.0,-89.0,180.0,top,U2,,,PinHeader_1x06_P2.54mm_Vertical,6 Pin Header,tht

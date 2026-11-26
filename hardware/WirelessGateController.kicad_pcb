@@ -9548,7 +9548,7 @@
 			)
 		)
 		(embedded_fonts no)
-		(model "${KICAD9_3DMODEL_DIR}/esp32-dev-kit-v1-1.snapshot.3/esp32_dev_kit_v1_asm.stp"
+		(model "${KIPRJMOD}/libraries/3dmodels/esp32_dev_kit_v1_asm.stp"
 			(offset
 				(xyz 0 25.3 2.5)
 			)

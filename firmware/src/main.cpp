@@ -23,9 +23,9 @@ const char* TOPIC_AVAIL   = "garage/availability";  // online/offline
 const char* TOPIC_INFO    = "garage/info";          // periodic diagnostic info
 
 // Relay pins
-// LOW-triggered relay module:
-// HIGH = off
-// LOW  = on
+// Active-HIGH BC337 transistor drivers
+const uint8_t RELAY_ON  = HIGH;
+const uint8_t RELAY_OFF = LOW;
 const int RELAY1_PIN = 27;   // K1 / Up
 const int RELAY2_PIN = 26;   // K2 / Stop
 const int RELAY3_PIN = 25;   // K3 / Down
@@ -141,14 +141,14 @@ void maintainGateway() {
 // =====================================================
 
 void setRelaySafeState() {
-  digitalWrite(RELAY1_PIN, HIGH);
-  digitalWrite(RELAY2_PIN, HIGH);
-  digitalWrite(RELAY3_PIN, HIGH);
+  digitalWrite(RELAY1_PIN, RELAY_OFF);
+  digitalWrite(RELAY2_PIN, RELAY_OFF);
+  digitalWrite(RELAY3_PIN, RELAY_OFF);
 }
 
 void startRelay1Pulse() {
   if (relay1Active) return;
-  digitalWrite(RELAY1_PIN, LOW);
+  digitalWrite(RELAY1_PIN, RELAY_ON);
   relay1Active = true;
   relay1StartMs = millis();
   Serial.println("Relay 1 pulsed (up)");
@@ -156,7 +156,7 @@ void startRelay1Pulse() {
 
 void startRelay2Pulse() {
   if (relay2Active) return;
-  digitalWrite(RELAY2_PIN, LOW);
+  digitalWrite(RELAY2_PIN, RELAY_ON);
   relay2Active = true;
   relay2StartMs = millis();
   Serial.println("Relay 2 pulsed (stop)");
@@ -164,7 +164,7 @@ void startRelay2Pulse() {
 
 void startRelay3Pulse() {
   if (relay3Active) return;
-  digitalWrite(RELAY3_PIN, LOW);
+  digitalWrite(RELAY3_PIN, RELAY_ON);
   relay3Active = true;
   relay3StartMs = millis();
   Serial.println("Relay 3 pulsed (down)");
@@ -174,19 +174,19 @@ void updateRelayPulses() {
   const unsigned long now = millis();
 
   if (relay1Active && (now - relay1StartMs >= RELAY_PULSE_MS)) {
-    digitalWrite(RELAY1_PIN, HIGH);
+    digitalWrite(RELAY1_PIN, RELAY_OFF);
     relay1Active = false;
     Serial.println("Relay 1 off");
   }
 
   if (relay2Active && (now - relay2StartMs >= RELAY_PULSE_MS)) {
-    digitalWrite(RELAY2_PIN, HIGH);
+    digitalWrite(RELAY2_PIN, RELAY_OFF);
     relay2Active = false;
     Serial.println("Relay 2 off");
   }
 
   if (relay3Active && (now - relay3StartMs >= RELAY_PULSE_MS)) {
-    digitalWrite(RELAY3_PIN, HIGH);
+    digitalWrite(RELAY3_PIN, RELAY_OFF);
     relay3Active = false;
     Serial.println("Relay 3 off");
   }

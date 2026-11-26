@@ -278,20 +278,29 @@ void handleRoot() {
   webServer.send(200, "text/html", html);
 }
 
-void handleUpdateFinished() {
-  if (!checkOtaAuth()) return;
+bool otaUploadActive = false;
+bool otaUploadSucceeded = false;
 
-  bool ok = !Update.hasError();
+void handleUpdateFinished() {
+  const bool ok = otaUploadSucceeded;
+  otaUploadSucceeded = false;
+
+  if (otaUploadActive) {
+    Update.abort();
+    otaUploadActive = false;
+  }
+
+  if (!checkOtaAuth()) return;
 
   webServer.sendHeader("Connection", "close");
   webServer.send(
-    200,
+    ok ? 200 : 500,
     "text/plain",
     ok ? "Update successful. Rebooting..." : "Update failed."
   );
 
-  delay(500);
   if (ok) {
+    delay(500);
     ESP.restart();
   }
 }
@@ -300,27 +309,60 @@ void handleUpdateUpload() {
   HTTPUpload& upload = webServer.upload();
 
   if (upload.status == UPLOAD_FILE_START) {
-    if (!checkOtaAuth()) return;
+    if (otaUploadActive) {
+      Update.abort();
+    }
 
-    Serial.printf("OTA upload start: %s\n", upload.filename.c_str());
+    otaUploadActive = false;
+    otaUploadSucceeded = false;
+
+    if (!webServer.authenticate(OTA_USER, OTA_PASSWORD)) {
+      return;
+    }
+
+    Serial.printf("OTA upload start: %s\n",
+                  upload.filename.c_str());
 
     setRelaySafeState();
 
-    if (!Update.begin(UPDATE_SIZE_UNKNOWN)) {
+    otaUploadActive = Update.begin(UPDATE_SIZE_UNKNOWN);
+
+    if (!otaUploadActive) {
       Update.printError(Serial);
     }
+
   } else if (upload.status == UPLOAD_FILE_WRITE) {
-    if (Update.write(upload.buf, upload.currentSize) != upload.currentSize) {
+    if (!otaUploadActive) return;
+
+    if (Update.write(upload.buf, upload.currentSize)
+        != upload.currentSize) {
       Update.printError(Serial);
+      Update.abort();
+      otaUploadActive = false;
     }
+
   } else if (upload.status == UPLOAD_FILE_END) {
-    if (Update.end(true)) {
-      Serial.printf("OTA success: %u bytes\n", upload.totalSize);
+    if (!otaUploadActive) return;
+
+    otaUploadSucceeded = Update.end(true);
+    otaUploadActive = false;
+
+    if (otaUploadSucceeded) {
+      Serial.printf("OTA success: %u bytes\n",
+                    upload.totalSize);
     } else {
       Update.printError(Serial);
+      Update.abort();
     }
+
   } else if (upload.status == UPLOAD_FILE_ABORTED) {
-    Update.abort();
+    if (otaUploadActive) {
+      Update.abort();
+    }
+
+    otaUploadActive = false;
+    otaUploadSucceeded = false;
+
     Serial.println("OTA upload aborted");
   }
 }

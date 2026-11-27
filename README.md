@@ -1,6 +1,6 @@
 # Wireless Gate Controller
 
-> **Note on authorship:** Large parts of the firmware source code and this initial (placeholder) README were generated with the use of AI. All hardware design, including the schematic and PCB layout, was done entirely by me.
+> **Note on authorship:** Large parts of the firmware source code and this initial (placeholder) README were generated with the use of AI. The README has not yet been fully reviewed or verified by me. All hardware design, including the schematic and PCB layout, was done entirely by me.
 
 [![Firmware Build](https://github.com/Crekk/WirelessGateController/actions/workflows/firmware.yml/badge.svg)](https://github.com/Crekk/WirelessGateController/actions/workflows/firmware.yml)
 
